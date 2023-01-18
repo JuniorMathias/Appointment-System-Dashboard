@@ -1,14 +1,15 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
-const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: "system-25fa1.firebaseapp.com",
-  projectId: "system-25fa1",
-  storageBucket: "system-25fa1.appspot.com",
-  messagingSenderId: "773273781866",
-  appId: "1:773273781866:web:492cab01ba04cace0fac13",
-  measurementId: "G-B371ZM5V1K"
+let firebaseConfig = {
+  apiKey: 
+  authDomain: "sistema-291e4.firebaseapp.com",
+  projectId: "sistema-291e4",
+  storageBucket: "sistema-291e4.appspot.com",
+  messagingSenderId: "695102058017",
+  appId: "1:695102058017:web:ba429da5e81d06297e3d60",
+  measurementId: "G-KNZBKV3ZDL"
 };
 
 if(!firebase.apps.length){

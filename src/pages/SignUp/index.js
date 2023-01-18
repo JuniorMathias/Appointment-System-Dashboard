@@ -1,5 +1,6 @@
 import * as S from './styles';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
 //import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
@@ -7,10 +8,15 @@ function SignUp() {
   const [ name, setName ] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { signUp } = useContext(AuthContext);
 
 function handleSubmit(e){
   e.preventDefault();
-  alert('Please enter');
+
+  if(name !== '' && email !== '' && password !== ''){
+    signUp(email, password, name);
+    alert(name + ' has been successfully')
+  }
 }
 
   return (
