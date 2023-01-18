@@ -1,10 +1,19 @@
-
+import * as S from './styles';
+import { useState } from 'react';
+import logo from '../../assets/logo.png';
 
 function SignIn() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <div>
-      <h1>PAGINA DE LOGIN</h1>
-    </div>
+    <S.ContainerCenter>
+      <S.Login>
+        <S.LogoArea>
+          <img src={logo} alt="Logo System"/>
+        </S.LogoArea>
+      </S.Login>
+    </S.ContainerCenter>
   );
 }
 
