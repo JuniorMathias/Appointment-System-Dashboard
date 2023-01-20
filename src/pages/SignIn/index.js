@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/auth'
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
 function handleSubmit(e){
   e.preventDefault();
@@ -40,7 +40,7 @@ function handleSubmit(e){
           <S.Button
             type="submit"
           >
-            Sign In
+            {loadingAuth ? 'Loading...' : 'Sign In'}
           </S.Button>
         </S.Form>
         <S.Link to="/register">Don't have an account? Subscribe</S.Link>
