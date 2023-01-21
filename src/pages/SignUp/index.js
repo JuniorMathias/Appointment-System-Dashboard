@@ -15,7 +15,6 @@ function handleSubmit(e){
 
   if(name !== '' && email !== '' && password !== ''){
     signUp(email, password, name);
-    alert(name + ' has been successfully')
   }
 }
 
