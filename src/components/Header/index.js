@@ -15,9 +15,17 @@ export default function Header(){
             <S.Avatar src={user.avatarUrl == null ? avatar : user.avatarUrl } alt="Avatar" />
         </S.SideBar>
 
-        <S.Link to="/">
+        <S.Link to="/dashboard">
             <FiHome color='#fff' size={24} />
             Chamados
+        </S.Link>
+        <S.Link to="/dashboard">
+            <FiUser color='#fff' size={24} />
+            Clientes
+        </S.Link>
+        <S.Link to="/dashboard">
+            <FiSettings color='#fff' size={24} />
+            Configurações
         </S.Link>
       </> 
     )
