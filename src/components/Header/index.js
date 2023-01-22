@@ -12,18 +12,20 @@ export default function Header(){
     return(
       <> 
         <S.SideBar>
-            <S.Avatar src={user.avatarUrl == null ? avatar : user.avatarUrl } alt="Avatar" />
+            <S.CoverAvatar>
+                <S.Avatar src={user.avatarUrl == null ? avatar : user.avatarUrl } alt="Avatar" />
+            </S.CoverAvatar>
         </S.SideBar>
 
         <S.Link to="/dashboard">
             <FiHome color='#fff' size={24} />
             Chamados
         </S.Link>
-        <S.Link to="/dashboard">
+        <S.Link to="/costumers">
             <FiUser color='#fff' size={24} />
             Clientes
         </S.Link>
-        <S.Link to="/dashboard">
+        <S.Link to="/profile">
             <FiSettings color='#fff' size={24} />
             Configurações
         </S.Link>
