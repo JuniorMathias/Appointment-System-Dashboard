@@ -5,19 +5,29 @@ export const SideBar = styled.div`
     margin: 0;
     padding: 0;
     width: 200px;
-    // background-color: #181C2e;
+    background-color: #181C2e;
     position: fixed;
     height: 100%;
     overflow: auto;
+    @media screen and (max-width: 700px){
+        width: 100%;
+        height: auto;
+        position: relative;
+        background-color: #181C2e;
+    }
 `;
 export const CoverAvatar = styled.div`
     background: url('../../assets/cover.png');
-    // background-color: #c3c3c3;
+    background-color: #c3c3c3;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 150px;
     padding-top: 30px;
+    @media screen and (max-width: 700px){
+        display: none;
+        background-color: #c3c3c3;
+    }
 `;
 export const Avatar = styled.img`
     border-radius: 50%;
@@ -31,16 +41,26 @@ export const Avatar = styled.img`
 `;
 
 export const Link = styled(Router)`
-    color: red !important;
-    background-color: #121212;
-    padding: 16px !important;
-    display: flex !important;
-    cursor: pointer !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    transition: ease-in-out .4s !important;
+    display: block;
+    color: rgba(255,255,255, 0.7);
+    padding: 16px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: ease-in-out .4s;
     &:hover {
         background-color: #121212;
-        color: #c3ce3c;
+        color: #fff;
+    }
+    svg{
+        margin-right: .7em;
+      }
+    @media screen and (max-width: 700px){
+        float: left;
+    }
+    @media screen and (max-width: 400px){
+        text-align: center;
+        float: none;
     }
 `;
