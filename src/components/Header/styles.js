@@ -13,7 +13,6 @@ export const SideBar = styled.div`
         width: 100%;
         height: auto;
         position: relative;
-        background-color: #181C2e;
     }
 `;
 export const CoverAvatar = styled.div`
@@ -26,7 +25,7 @@ export const CoverAvatar = styled.div`
     padding-top: 30px;
     @media screen and (max-width: 700px){
         display: none;
-        background-color: #c3c3c3;
+        margin-left: 0;
     }
 `;
 export const Avatar = styled.img`
@@ -44,6 +43,7 @@ export const Link = styled(Router)`
     display: block;
     color: rgba(255,255,255, 0.7);
     padding: 16px;
+    margin: 0;
     text-decoration: none;
     display: flex;
     flex-direction: row;
