@@ -33,11 +33,24 @@ export default function Profile(){
                     accept="image/*"
                   />
                   { avatarUrl == null ? 
-                    <img src={avatar} width="250" height="250" alt="profile pic" />
+                    <img src={avatar} width={250} height={250} alt="profile pic" />
                      :
                      <img src={avatarUrl} width="250" height="250" alt="profile pic" />
                   }
                 </S.LabelAvatar>
+                <S.Label>Name</S.Label>
+                <S.FormInput
+                    type="text"
+                    value={name}
+                    onChange={ (e) => setName(e.target.value)} 
+                  />
+                <S.Label>Email</S.Label>
+                <S.FormInput
+                    type="text"
+                    value={email}
+                    disabled={true}
+                  />
+                  <S.Button type='submit'>Save</S.Button>
               </S.Form>
             </S.Container>
         </S.Content>
