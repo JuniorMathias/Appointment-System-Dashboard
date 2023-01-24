@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link as Router } from 'react-router-dom';
+import cover from '../../assets/cover.png';
 
 export const SideBar = styled.div`
     margin: 0;
@@ -16,7 +17,7 @@ export const SideBar = styled.div`
     }
 `;
 export const CoverAvatar = styled.div`
-    background: url('../../assets/cover.png');
+    background: url(${cover});
     background-color: #c3c3c3;
     background-position: center;
     background-repeat: no-repeat;

@@ -3,7 +3,6 @@ import { AuthContext } from '../../contexts/auth';
 import { useContext } from 'react';
 import avatar from '../../assets/avatar.png';
 import { FiHome, FiUser, FiSettings  } from 'react-icons/fi';
-import './header.css';
 
 
 export default function Header(){
