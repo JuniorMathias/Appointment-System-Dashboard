@@ -9,7 +9,7 @@ import { FiSettings,FiUpload } from 'react-icons/fi';
 
 
 export default function Profile(){
-  const { user } = useContext(AuthContext);
+  const { user,signOut } = useContext(AuthContext);
 
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
@@ -28,15 +28,17 @@ export default function Profile(){
                   <S.Span>
                     <FiUpload color='#fff' size={25} />
                   </S.Span>
-                  <S.FormInput
+                  <S.FormInputFile
                     type="file"
                     accept="image/*"
                   />
+                  <S.AvatarImage>
                   { avatarUrl == null ? 
                     <img src={avatar} width={250} height={250} alt="profile pic" />
                      :
                      <img src={avatarUrl} width="250" height="250" alt="profile pic" />
                   }
+                  </S.AvatarImage>
                 </S.LabelAvatar>
                 <S.Label>Name</S.Label>
                 <S.FormInput
@@ -49,9 +51,13 @@ export default function Profile(){
                     type="text"
                     value={email}
                     disabled={true}
+                    style={{ cursor: 'not-allowed'}}
                   />
                   <S.Button type='submit'>Save</S.Button>
               </S.Form>
+            </S.Container>
+            <S.Container>
+                <S.ButtonSignout onClick={ () => signOut() }>Sign Out </S.ButtonSignout>
             </S.Container>
         </S.Content>
       </>
