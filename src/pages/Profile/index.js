@@ -5,15 +5,64 @@ import Title from '../../components/Title';
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 
+import firebase from '../../services/firebaseConnection';
+
 import { FiSettings,FiUpload } from 'react-icons/fi';
 
 
 export default function Profile(){
-  const { user,signOut } = useContext(AuthContext);
+  const { user,signOut, setUser, storageUser } = useContext(AuthContext);
 
   const [name, setName] = useState(user && user.name);
   const [email, setEmail] = useState(user && user.email);
   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+  const [imageAvatar, setImageAvatar] = useState(null);
+
+//  preview before upload it
+function handleFile(e){
+  //console.log(e.target.files[0]);
+  if(e.target.files[0]){
+    const image = e.target.files[0];
+    if(image.type === 'image/jpeg' || image.type === 'image/png'){
+      setImageAvatar(image);
+      //creating a URl from the main target
+      setAvatarUrl(URL.createObjectURL(e.target.files[0]))
+    }else {
+      alert("Only PNG and JPEG images are supported");
+      setImageAvatar(null);
+      return null;
+    }
+  }
+}
+
+// uploading a new photo 
+  function handleUpload(){
+
+  }
+
+  async function handleSave(e){
+    e.preventDefault();
+    if(imageAvatar == null && name !== ''){
+      await firebase.firestore().collection('users')
+      .doc(user.uid)
+      .update({
+        name: name
+      })
+      // save the new value here getting from context auth
+      .then(()=> {
+        let data = {
+          ...user,
+          name: name
+        };
+        setUser(data);
+        storageUser(data);
+        alert("salvou com sucesso!");
+      })
+    }
+    else if(name !== '' && imageAvatar !== null){
+      handleUpload();
+    }
+  }
 
   return(
       <>
@@ -23,7 +72,7 @@ export default function Profile(){
                 <FiSettings size={25} />
             </Title>
             <S.Container>
-              <S.Form>
+              <S.Form onSubmit={handleSave}>
                 <S.LabelAvatar>
                   <S.Span>
                     <FiUpload color='#fff' size={25} />
@@ -31,6 +80,7 @@ export default function Profile(){
                   <S.FormInputFile
                     type="file"
                     accept="image/*"
+                    onChange={handleFile}
                   />
                   <S.AvatarImage>
                   { avatarUrl == null ? 
