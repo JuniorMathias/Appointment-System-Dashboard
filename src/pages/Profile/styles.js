@@ -11,12 +11,12 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-left: 13%;
-    margin-right: 2%;
-    margin-bottom: 1em;
     margin-top: 1em;
+    margin-left: 10%;
     @media screen and (max-width: 750px){
-        margin: 0 0 0 0;
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 1em;
     }
 `;
 export const Form = styled.form`
@@ -59,6 +59,10 @@ export const Label = styled.label`
     margin-bottom: 0.5em;
     font-size: 1.4em;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 `;
 
 export const Span = styled.span`
@@ -73,15 +77,12 @@ export const Span = styled.span`
 `;
 export const FormInput = styled.input`
     margin-bottom: 1em;
+    margin-top: 0.5em;
     padding: .7em;
     padding-right: 10rem;
     border:0;
     border-radius: 5px;
     max-width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 `;
 export const Button = styled.button`
     padding: 8px 40px 8px 40px;
@@ -95,14 +96,19 @@ export const Button = styled.button`
     margin-left: 32%;
 `;
 export const ButtonSignout = styled.button`
-    padding: 8px 20px;
-    background-color: transparent;
-    border:1px solid #121212;
+    padding: 8px 40px 8px 40px;
+    background-color: #121212;
+    color: white;
     border-radius: 5px;
     font-size: 1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 1%;
+    &:hover {
+        color: red;
+        transition: ease-in-out .4s;
+    }
 `;
 
 
