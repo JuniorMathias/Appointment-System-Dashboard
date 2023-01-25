@@ -5,13 +5,19 @@ export const Content = styled.div`
 
 export const Container = styled.div`
     display: flex;
-    background-color: #cecece;
+    background-color: #dcdcdc;
     border-radius: 5px;
     padding: .8em;
-    margin-bottom: 1em;
-    display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    margin-left: 13%;
+    margin-right: 2%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    @media screen and (max-width: 750px){
+        margin: 0 0 0 0;
+    }
 `;
 export const Form = styled.form`
     margin-bottom: 1em;
@@ -20,7 +26,9 @@ export const Form = styled.form`
     margin-bottom: 1em;
     padding: .7em;
     border:0;
-    max-width: 600px;
+    @media screen and (max-width: 700px){
+        margin-left: 0;
+    }
 `;
 
 export const LabelAvatar = styled.label`

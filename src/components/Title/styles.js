@@ -6,7 +6,6 @@ export const Title = styled.div`
     align-items: center;
     border-radius: 5px;
     background-color: #f8f8f8;
-    padding: .8em;
     margin-left: 200px;
     padding: 1em 16px;
     @media screen and (max-width: 700px){
