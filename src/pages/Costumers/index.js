@@ -1,20 +1,46 @@
 
 import { useState } from 'react';
+
 import * as S from './styles';
-import { AuthContext } from '../../contexts/auth';
+
 import Header from '../../components/Header';
 import Title from '../../components/Title';
+
 import { FiUser } from 'react-icons/fi';
+import { toast } from "react-toastify";
+
+import firebase from '../../services/firebaseConnection';
 
 
 
 export default function Costumers(){
-  const [fakeName, setFakeName] = useState('');
+  const [companyName, setCompanyName] = useState('');
   const [document, setDocument] = useState('');
   const [address, setAddress] = useState('');
 
-  function handleAdd(e){
+async function handleAdd(e){
     e.preventDefault();
+
+    if(companyName !== '' && document !== '' && address !==''){
+        await firebase.firestore().collection('costumers')
+        .add({
+            companyName: companyName,
+            document: document,
+            address: address
+        })
+        .then(()=>{
+            setCompanyName('');
+            setDocument('');
+            setAddress('');
+            toast.info("Company Registered successfully");
+        })
+        .catch(()=>{
+            toast.error("Couldn't register the company");
+        })
+    }else{
+        toast.error("Please Fill in the details");
+    }
+
   }
 
   return(
@@ -26,12 +52,12 @@ export default function Costumers(){
             </Title>
         <S.Container>
             <S.Form onSubmit={handleAdd}>
-                <S.Label>Fake Name</S.Label>
+                <S.Label>Company Name</S.Label>
                 <S.FormInput
                     type="text"
-                    value={fakeName}
+                    value={companyName}
                     placeholder="Company Name"
-                    onChange={ (e) => setFakeName(e.target.value)} 
+                    onChange={ (e) => setCompanyName(e.target.value)} 
                 />
 
                 <S.Label>Document Number</S.Label>
