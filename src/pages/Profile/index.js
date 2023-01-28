@@ -36,9 +36,42 @@ function handleFile(e){
 }
 
 // uploading a new photo 
-  function handleUpload(){
+async function handleUpload(){
+  const currentUid = user.uid;
 
-  }
+  const uploadTask = await firebase.storage()
+  .ref(`images/${currentUid}/${imageAvatar.name}`)
+  .put(imageAvatar)
+  .then( async () => {
+    alert('Image uploaded!');
+
+    await firebase.storage().ref(`images/${currentUid}`)
+    .child(imageAvatar.name).getDownloadURL()
+    .then( async (url)=>{
+      let urlFoto = url;
+      
+      await firebase.firestore().collection('users')
+      .doc(user.uid)
+      .update({
+        avatarUrl: urlFoto,
+        name: name
+      })
+      .then(()=>{
+        let data = {
+          ...user,
+          avatarUrl: urlFoto,
+          name: name
+        }; 
+        setUser(data);
+        storageUser(data);
+
+      })
+
+    })
+
+  })
+
+}
 
   async function handleSave(e){
     e.preventDefault();
@@ -56,7 +89,7 @@ function handleFile(e){
         };
         setUser(data);
         storageUser(data);
-        alert("salvou com sucesso!");
+        alert("Image Uploaded");
       })
     }
     else if(name !== '' && imageAvatar !== null){
