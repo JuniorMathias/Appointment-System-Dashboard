@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import Title from '../../components/Title';
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
+import { toast } from "react-toastify";
 
 import firebase from '../../services/firebaseConnection';
 
@@ -28,7 +29,7 @@ function handleFile(e){
       //creating a URl from the main target
       setAvatarUrl(URL.createObjectURL(e.target.files[0]))
     }else {
-      alert("Only PNG and JPEG images are supported");
+      toast.error("Only PNG and JPEG images are supported");
       setImageAvatar(null);
       return null;
     }
@@ -43,23 +44,23 @@ async function handleUpload(){
   .ref(`images/${currentUid}/${imageAvatar.name}`)
   .put(imageAvatar)
   .then( async () => {
-    alert('Image uploaded!');
+    toast.success('Success uploaded!');
 
     await firebase.storage().ref(`images/${currentUid}`)
     .child(imageAvatar.name).getDownloadURL()
     .then( async (url)=>{
-      let urlFoto = url;
+      let urlPhoto = url;
       
       await firebase.firestore().collection('users')
       .doc(user.uid)
       .update({
-        avatarUrl: urlFoto,
+        avatarUrl: urlPhoto,
         name: name
       })
       .then(()=>{
         let data = {
           ...user,
-          avatarUrl: urlFoto,
+          avatarUrl: urlPhoto,
           name: name
         }; 
         setUser(data);
@@ -89,7 +90,7 @@ async function handleUpload(){
         };
         setUser(data);
         storageUser(data);
-        alert("Image Uploaded");
+        toast.success("name Uploaded");
       })
     }
     else if(name !== '' && imageAvatar !== null){
