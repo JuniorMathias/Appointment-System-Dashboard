@@ -46,7 +46,7 @@ function AuthProvider({ children }) {
             toast.success('Welcome Back');
 
         })
-        .catch((error)=>{
+        .catch(()=>{
             toast.error('Ops something went wrong');
             setLoadingAuth(false);
         })
@@ -78,7 +78,7 @@ function AuthProvider({ children }) {
                 toast.success('Welcome to Dashboard System');
             })
         })
-        .catch((error)=> {
+        .catch(()=> {
             toast.error('Ops something went wrong');
             setLoadingAuth(false);
         })
