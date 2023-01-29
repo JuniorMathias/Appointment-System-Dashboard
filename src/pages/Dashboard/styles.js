@@ -1,5 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link as Router } from 'react-router-dom';
+import {
+    TextField as input,
+    Button as btn,
+    TableCell as tbc,
+    TableRow as tr
+  } from '@material-ui/core';
 
 export const Content = styled.div`
 `;
@@ -13,7 +19,7 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin-top: 5em;
-    margin-left: 10%;
+    margin-left: 11.4%;
     @media screen and (max-width: 750px){
         margin-left: 0;
         margin-top: 0;
@@ -52,4 +58,20 @@ export const Link = styled(Router)`
         text-align: center;
         float: none;
     }
+`;
+
+// table part 
+export const TableCell = styled(tbc)`
+  font-weight: bold !important;
+  width: 15%;
+  color: #009b89 !important;
+  text-align: center !important;
+  // border-bottom: 50% !important;
+`;
+export const TableCellValues = styled(tbc)`
+  width: 15%;
+  color: #fff !important;
+  text-align: center !important;
+`;
+export const Button = styled.button`
 `;
