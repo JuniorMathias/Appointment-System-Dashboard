@@ -1,11 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link as Router } from 'react-router-dom';
-import {
-    TextField as input,
-    Button as btn,
-    TableCell as tbc,
-    TableRow as tr
-  } from '@material-ui/core';
 
 export const Content = styled.div`
 `;
@@ -19,12 +13,22 @@ export const Container = styled.div`
     align-items: center;
     flex-direction: column;
     margin-top: 5em;
-    margin-left: 11.4%;
+    margin-left: 11.0%;
     @media screen and (max-width: 750px){
         margin-left: 0;
         margin-top: 0;
         margin-bottom: 1em;
-}
+    }
+    @media screen and (max-width: 750px){
+      margin-left: 0;
+      margin-top: 0;
+      margin-bottom: 1em;
+  }
+    @media screen and (max-width: 400px){
+      margin-left: 0;
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
 `;
 
 export const Span = styled.span`
@@ -61,17 +65,43 @@ export const Link = styled(Router)`
 `;
 
 // table part 
-export const TableCell = styled(tbc)`
-  font-weight: bold !important;
-  width: 15%;
+export const Table = styled.table`
+    border:1px solid #CCC;
+    margin-top: 1em;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    @media screen and (max-width: 1000px){
+      margin-top: 1em;
+      margin-bottom: 1em;
+  }
+`;
+export const Tr = styled.tr`
+  background-color: #f8f8f8;
+  color: #009b89 !important;
+  border: 1px solid #ddd;
+  padding: .35em;
+  // @media screen and (max-width: 750px){}
+  @media screen and (max-width: 600px){
+  }
+`;
+export const Th = styled.th`
+  padding: .62em;
+  text-align: center;
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+`;
+export const Tbody = styled.tbody`
   color: #009b89 !important;
   text-align: center !important;
-  // border-bottom: 50% !important;
+  font-weight: bold !important;
 `;
-export const TableCellValues = styled(tbc)`
-  width: 15%;
-  color: #fff !important;
-  text-align: center !important;
+
+export const Td = styled.td`
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
 `;
 export const Button = styled.button`
 `;

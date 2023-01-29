@@ -6,11 +6,9 @@ import Header from '../../components/Header';
 import Title from '../../components/Title';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
 import {
-  Table,
   TableBody,
   TableContainer,
-  TableHead,
-  TableRow
+  TableHead
 } from '@material-ui/core';
 
 export default function Dashboard(){
@@ -42,45 +40,33 @@ export default function Dashboard(){
           <FiPlus size={25} color="#fff" />
           New Register
         </S.Link>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow style={{ fontWeight: 'Bold' }}>
-                <S.TableCell> Clients </S.TableCell>
-                <S.TableCell>About</S.TableCell>
-                <S.TableCell>Status</S.TableCell>
-                <S.TableCell>Registered in</S.TableCell>
-                <S.TableCell>#</S.TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 }
-                }}
-              >
-                <S.TableCellValues>Client Name</S.TableCellValues>
-                <S.TableCellValues>Suport</S.TableCellValues>
-                <S.TableCellValues className='badge'
-                  style={{backgroundColor: '#009b89', borderRadius: '5%'}}
-                >
-                  open
-                </S.TableCellValues>
-                <S.TableCellValues>dd/mm/yyyy</S.TableCellValues>
-                <S.TableCellValues>
-                  <S.Button style={{backgroundColor: '#3583f6'}}>
-                    <FiSearch size={17} color="#fff" />
-                  </S.Button>
-                  <S.Button style={{backgroundColor: '#f6a935'}}>
-                    <FiEdit2 size={17} color="#fff" />
-                  </S.Button>
-                </S.TableCellValues>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-        
-      
+        <S.Table>
+          <S.Tr>
+            <S.Th scope="col">Cliente</S.Th>
+            <S.Th scope="col">Assunto</S.Th>
+            <S.Th scope="col">Status</S.Th>
+            <S.Th scope="col">Cadastrado em</S.Th>
+            <S.Th scope="col">#</S.Th>
+          </S.Tr>
+          <S.Tbody>
+            <S.Tr>
+              <S.Td>Sujeito</S.Td>
+              <S.Td data-label="Assunto">Suporte</S.Td>
+              <S.Td data-label="Status">
+                <span className="badge" style={{backgroundColor: '#5cb85c' }}>Em aberto</span>
+              </S.Td>
+              <S.Td data-label="Cadastrado">20/06/2021</S.Td>
+              <S.Td data-label="#">
+                <S.Button id="action" style={{backgroundColor: '#3583f6' }}>
+                  <FiSearch color="#FFF" size={17} />
+                </S.Button>
+                <S.Button id="action" style={{backgroundColor: '#F6a935' }}>
+                  <FiEdit2 color="#FFF" size={17} />
+                </S.Button>
+              </S.Td>
+            </S.Tr>
+          </S.Tbody>
+        </S.Table>
       
       </S.Container>
       </>

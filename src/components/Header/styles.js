@@ -10,7 +10,10 @@ export const SideBar = styled.div`
     position: fixed;
     height: 100%;
     overflow: auto;
-    @media screen and (max-width: 700px){
+    @media screen and (max-width: 1000px){
+        width: 150px;
+    }
+    @media screen and (max-width: 750px){
         width: 100%;
         height: auto;
         position: relative;
@@ -24,8 +27,8 @@ export const CoverAvatar = styled.div`
     background-size: cover;
     height: 150px;
     padding-top: 30px;
-    @media screen and (max-width: 700px){
-        display: none;
+    @media screen and (max-width: 750px){
+        // display: none;
         margin-left: 0;
     }
 `;
@@ -63,5 +66,8 @@ export const Link = styled(Router)`
     @media screen and (max-width: 400px){
         text-align: center;
         float: none;
+        svg{
+            diplay: none;
+          }
     }
 `;
