@@ -15,15 +15,16 @@ export default function New(){
 
              <S.Container>
                  <S.Form>
-                     <S.Label>Client</S.Label>
-                     <S.Select  select>
-                         <S.Option>
-                         one
-                         </S.Option>
-                         <S.Option>
-                         one
-                         </S.Option>
-                     </S.Select>
+                    <S.Label>Costumer</S.Label>
+                    <S.Select type='select'>
+                      <S.Option key={1} value={1}>one</S.Option>
+                    </S.Select>
+                    <S.Label>About</S.Label>
+                    <S.Select>
+                      <S.Option value="Suport">Suport</S.Option>
+                      <S.Option value="Technical">Technical</S.Option>
+                      <S.Option value="Finance">Finance</S.Option>
+                    </S.Select>
                  </S.Form>
              </S.Container>
             
