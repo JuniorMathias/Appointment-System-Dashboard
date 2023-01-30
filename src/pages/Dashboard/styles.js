@@ -76,22 +76,22 @@ export const Table = styled.table`
       margin-bottom: 1em;
   }
 `;
+export const Th = styled.th`
+  padding: .62em;
+  text-align: center;
+  font-weight: bold !important;
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+`;
+
 export const Tr = styled.tr`
   background-color: #f8f8f8;
   color: #009b89 !important;
   border: 1px solid #ddd;
   padding: .35em;
-  // @media screen and (max-width: 750px){}
-  @media screen and (max-width: 600px){
-  }
 `;
-export const Th = styled.th`
-  padding: .62em;
-  text-align: center;
-  font-size: .85em;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-`;
+
 export const Tbody = styled.tbody`
   color: #009b89 !important;
   text-align: center !important;
@@ -100,8 +100,10 @@ export const Tbody = styled.tbody`
 
 export const Td = styled.td`
   background-color: #f8f8f8;
+  color: #474a51 !important;
   border: 1px solid #ddd;
   padding: .35em;
+  margin-left:
 `;
 export const Button = styled.button`
 `;

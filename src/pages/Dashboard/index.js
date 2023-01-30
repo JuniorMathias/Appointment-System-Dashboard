@@ -5,11 +5,6 @@ import * as S from './styles';
 import Header from '../../components/Header';
 import Title from '../../components/Title';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
-import {
-  TableBody,
-  TableContainer,
-  TableHead
-} from '@material-ui/core';
 
 export default function Dashboard(){
   const [register, setRegister] = useState([1]);
@@ -42,25 +37,27 @@ export default function Dashboard(){
         </S.Link>
         <S.Table>
           <S.Tr>
-            <S.Th scope="col">Cliente</S.Th>
-            <S.Th scope="col">Assunto</S.Th>
+            <S.Th scope="col">Client</S.Th>
+            <S.Th scope="col">About</S.Th>
             <S.Th scope="col">Status</S.Th>
-            <S.Th scope="col">Cadastrado em</S.Th>
+            <S.Th scope="col">Registered in</S.Th>
             <S.Th scope="col">#</S.Th>
           </S.Tr>
           <S.Tbody>
             <S.Tr>
-              <S.Td>Sujeito</S.Td>
-              <S.Td data-label="Assunto">Suporte</S.Td>
+              <S.Td>Junior</S.Td>
+              <S.Td data-label="Assunto">Suport</S.Td>
               <S.Td data-label="Status">
-                <span className="badge" style={{backgroundColor: '#5cb85c' }}>Em aberto</span>
+                <span className="badge" style={{backgroundColor: '#5cb85c' }}>Open</span>
               </S.Td>
-              <S.Td data-label="Cadastrado">20/06/2021</S.Td>
+              <S.Td data-label="Cadastrado">DD/MM/YYYY</S.Td>
               <S.Td data-label="#">
-                <S.Button id="action" style={{backgroundColor: '#3583f6' }}>
+                <S.Button id="action" 
+                  style={{backgroundColor: '#3583f6', marginRight: '0.3em', borderRadius: '20%'}}
+                >
                   <FiSearch color="#FFF" size={17} />
                 </S.Button>
-                <S.Button id="action" style={{backgroundColor: '#F6a935' }}>
+                <S.Button id="action" style={{backgroundColor: '#F6a935', borderRadius: '20%' }}>
                   <FiEdit2 color="#FFF" size={17} />
                 </S.Button>
               </S.Td>
