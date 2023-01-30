@@ -22,7 +22,7 @@ export default function Dashboard(){
 
           <S.Span>Nothing Registered...</S.Span>
 
-          <S.Link to="/dashboard">
+          <S.Link to="/new">
             <FiPlus size={25} color="#fff" />
             New Register
           </S.Link>
@@ -31,7 +31,7 @@ export default function Dashboard(){
       ): 
       <>
       <S.Container>
-        <S.Link to="/dashboard">
+        <S.Link to="/new">
           <FiPlus size={25} color="#fff" />
           New Register
         </S.Link>
