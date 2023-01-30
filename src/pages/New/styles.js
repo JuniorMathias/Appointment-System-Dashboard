@@ -35,6 +35,9 @@ export const Form = styled.form`
     }
     
 `;
+export const Values = styled.div`
+`;
+
 export const Label = styled.label`
     margin-bottom: 0.5em;
     font-size: 1.4em;
@@ -43,8 +46,6 @@ export const Label = styled.label`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
-    
 `;
 export const Select = styled.select`
     margin-bottom: 1em;
@@ -56,5 +57,14 @@ export const Select = styled.select`
     
 `;
 export const Option = styled.option`
+    
+`;
+export const FormInput = styled.input`
+    
+`;
+export const Span = styled.span`
+    
+`;
+export const TextArea = styled.textarea`
     
 `;
