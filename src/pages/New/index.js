@@ -4,7 +4,10 @@ import Header from '../../components/Header';
 import Title from '../../components/Title';
 import {  FiPlusCircle  } from 'react-icons/fi';
 
-export default function New(){
+export default function New(e){
+  function handleRegister(){
+    e.preventDefault();
+  }
 
     return(
         <div>
@@ -14,7 +17,7 @@ export default function New(){
              </Title>
 
              <S.Container>
-                 <S.Form>
+                 <S.Form onSubmit={handleRegister}>
                   <S.Values>
                       <S.Label>Costumer</S.Label>
                       <S.Select type='select'>
@@ -40,6 +43,7 @@ export default function New(){
                         type="radio"
                         name="radio"
                         value="Progress"
+                        style={{marginLeft: '15px'}}
                       />
                       <S.Span>Progress</S.Span>
 
@@ -47,6 +51,7 @@ export default function New(){
                         type="radio"
                         name="radio"
                         value="Finished"
+                        style={{marginLeft: '15px'}}
                       />
                       <S.Span>Finished</S.Span>
                    </S.Values>
@@ -56,6 +61,8 @@ export default function New(){
                       type="text"
                       placeholder="How can I help you ? (Optional)"
                     />
+
+                    <S.Button type='submit'>Register</S.Button>
 
                  </S.Form>
              </S.Container>

@@ -27,10 +27,10 @@ export const Form = styled.form`
         margin-left: 0;
     }
     @media screen and (max-width: 700px){
-        margin-left: 10%;
+        margin-left: 0;
     }
     @media screen and (max-width: 400px){
-        margin-right: 60%;
+        margin-right: 40%;
         margin-left: -2%;
     }
     
@@ -42,7 +42,7 @@ export const Label = styled.label`
     margin-bottom: 0.5em;
     font-size: 1.4em;
     display: flex;
-    margin-left: 150%;
+    margin-left: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -53,18 +53,42 @@ export const Select = styled.select`
     padding: .7em;
     border: 0;
     border-radius: 5px;
-    width: 300%;
+    width: 200%;
+    @media screen and (max-width: 400px && max-width: 700){
+        width: 180%;
+    }
+    @media screen and (max-width: 700px){
+        width: 180%;
+    }
     
 `;
 export const Option = styled.option`
     
 `;
 export const FormInput = styled.input`
+    margin: 15px 0;
+
     
 `;
 export const Span = styled.span`
-    
+    padding-Left: 0.5em;
+    font-size: 1.3em;
 `;
 export const TextArea = styled.textarea`
-    
+    height: 105px;
+    width: 200%;
+    resize: none;
+    border-radius: 5px;
+    margin-bottom: 1em;
+`;
+export const Button = styled.button`
+    padding: 8px 40px 8px 40px;
+    background-color: #121212;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70%;
 `;
