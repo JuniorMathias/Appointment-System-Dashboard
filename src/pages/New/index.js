@@ -6,6 +6,7 @@ import {  FiPlusCircle  } from 'react-icons/fi';
 
 export default function New(e){
   const [about, setAbout] = useState("Suport");
+  const [status, setStatus] = useState('Open');
 
 
   function handleRegister(){
@@ -14,7 +15,9 @@ export default function New(e){
   function handleChangeSelect(){
     setAbout(e.target.value);
   }
-
+  function handleOptionChange(){
+    setStatus(e.target.value);
+  }
     return(
         <div>
             <Header />
@@ -42,6 +45,8 @@ export default function New(e){
                         type="radio"
                         name="radio"
                         value="Open"
+                        onChange={handleOptionChange}
+                        checked={ status == 'open'}
                       />
                       <S.Span>Open</S.Span>
 
@@ -49,6 +54,8 @@ export default function New(e){
                         type="radio"
                         name="radio"
                         value="Progress"
+                        onChange={handleOptionChange}
+                        checked={ status == 'Progress'}
                         style={{marginLeft: '15px'}}
                       />
                       <S.Span>Progress</S.Span>
@@ -57,6 +64,8 @@ export default function New(e){
                         type="radio"
                         name="radio"
                         value="Finished"
+                        onChange={handleOptionChange}
+                        checked={ status == 'Finished'}
                         style={{marginLeft: '15px'}}
                       />
                       <S.Span>Finished</S.Span>
