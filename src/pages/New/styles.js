@@ -67,8 +67,6 @@ export const Option = styled.option`
 `;
 export const FormInput = styled.input`
     margin: 15px 0;
-
-    
 `;
 export const Span = styled.span`
     padding-Left: 0.5em;

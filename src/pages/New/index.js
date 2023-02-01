@@ -1,21 +1,64 @@
 import * as S from './styles';
-import { useState } from 'react';
+
 import Header from '../../components/Header';
 import Title from '../../components/Title';
 import {  FiPlusCircle  } from 'react-icons/fi';
+import { toast } from "react-toastify";
+
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
+import firebase from '../../services/firebaseConnection';
 
 export default function New(e){
   const [about, setAbout] = useState("Suport");
   const [status, setStatus] = useState('Open');
+  const [complement, setComplement] = useState('');
 
+  const [customer, setCustomer] = useState([]);
+  const [loadCustomer, setLoadCustomer] = useState(true);
+  const [customerSelected, setCustomerSelected] = useState(0);
 
-  function handleRegister(){
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function loadCustomer(){
+      await firebase.firestore().collection('costumers')
+      .get()
+      .then((snapshot) => {
+        let list = [];
+        snapshot.forEach((doc) => {
+          list.push({
+            id: doc.id,
+            companyName: doc.companyName
+          })
+        })
+
+        if(list.length === 0){
+          toast.info("No Company Found");
+          setCustomer([ {id: 1, companyName: 'Open to work'}]);
+          setLoadCustomer(false);
+          return;
+        }
+        setCustomer(list);
+        setLoadCustomer(false);
+      })
+      .catch((error) => {
+        setLoadCustomer(false);
+        setCustomer([ {id: 1, companyName: ''}]);
+      })
+    }
+  })
+
+  function handleRegister(e){
     e.preventDefault();
   }
-  function handleChangeSelect(){
+  function handleChangeCustomer(e){
+    setStatus(e.target.value);
+  }
+  function handleChangeSelect(e){
     setAbout(e.target.value);
   }
-  function handleOptionChange(){
+  function handleOptionChange(e){
     setStatus(e.target.value);
   }
     return(
@@ -28,9 +71,20 @@ export default function New(e){
              <S.Container>
                  <S.Form onSubmit={handleRegister}>
                   <S.Values>
-                      <S.Label>Costumer</S.Label>
-                      <S.Select type='select'>
-                        <S.Option key={1} value={1}>one</S.Option>
+                      <S.Label>Customer</S.Label>
+                      <S.Select 
+                        type='select'
+                        value={customerSelected}
+                        onChange={handleChangeCustomer}
+                      >
+                        {customer.map((item, index) => {
+                          console.log(customer);
+                          return (
+                            <option key={item.id} value={index} >
+                              {item.companyName}
+                            </option>
+                          )
+                        })}
                       </S.Select>
 
                       <S.Label>About</S.Label>
@@ -46,7 +100,7 @@ export default function New(e){
                         name="radio"
                         value="Open"
                         onChange={handleOptionChange}
-                        checked={ status == 'open'}
+                        checked={ status === 'Open'}
                       />
                       <S.Span>Open</S.Span>
 
@@ -55,7 +109,7 @@ export default function New(e){
                         name="radio"
                         value="Progress"
                         onChange={handleOptionChange}
-                        checked={ status == 'Progress'}
+                        checked={ status === 'Progress'}
                         style={{marginLeft: '15px'}}
                       />
                       <S.Span>Progress</S.Span>
@@ -65,7 +119,7 @@ export default function New(e){
                         name="radio"
                         value="Finished"
                         onChange={handleOptionChange}
-                        checked={ status == 'Finished'}
+                        checked={ status === 'Finished'}
                         style={{marginLeft: '15px'}}
                       />
                       <S.Span>Finished</S.Span>
@@ -75,6 +129,8 @@ export default function New(e){
                     <S.TextArea 
                       type="text"
                       placeholder="How can I help you ? (Optional)"
+                      value={complement}
+                      onChange={ (e) => setComplement(e.target.value)}
                     />
 
                     <S.Button type='submit'>Register</S.Button>
