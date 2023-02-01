@@ -1,12 +1,18 @@
 import * as S from './styles';
-
+import { useState } from 'react';
 import Header from '../../components/Header';
 import Title from '../../components/Title';
 import {  FiPlusCircle  } from 'react-icons/fi';
 
 export default function New(e){
+  const [about, setAbout] = useState("Suport");
+
+
   function handleRegister(){
     e.preventDefault();
+  }
+  function handleChangeSelect(){
+    setAbout(e.target.value);
   }
 
     return(
@@ -25,7 +31,7 @@ export default function New(e){
                       </S.Select>
 
                       <S.Label>About</S.Label>
-                      <S.Select>
+                      <S.Select value={about} onChange={handleChangeSelect}>
                         <S.Option value="Suport">Suport</S.Option>
                         <S.Option value="Technical">Technical</S.Option>
                         <S.Option value="Finance">Finance</S.Option>
