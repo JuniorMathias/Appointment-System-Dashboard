@@ -19,9 +19,9 @@ export default function Header(){
             <FiHome color='#fff' size={24} />
             Dashboard
         </S.Link>
-        <S.Link to="/costumers">
+        <S.Link to="/Customers">
             <FiUser color='#fff' size={24} />
-            Costumers
+            Customers
         </S.Link>
         <S.Link to="/profile">
             <FiSettings color='#fff' size={24} />

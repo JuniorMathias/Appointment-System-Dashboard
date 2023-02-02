@@ -13,7 +13,7 @@ import firebase from '../../services/firebaseConnection';
 
 
 
-export default function Costumers(){
+export default function Customers(){
   const [companyName, setCompanyName] = useState('');
   const [document, setDocument] = useState('');
   const [address, setAddress] = useState('');
