@@ -47,13 +47,11 @@ export default function New(e){
         setCustomer([ {id: 1, companyName: ''}]);
       })
     }
-  })
+    loadCustomer();
+  },[]);
 
   function handleRegister(e){
     e.preventDefault();
-  }
-  function handleChangeCustomer(e){
-    setStatus(e.target.value);
   }
   function handleChangeSelect(e){
     setAbout(e.target.value);
@@ -61,6 +59,10 @@ export default function New(e){
   function handleOptionChange(e){
     setStatus(e.target.value);
   }
+  function handleChangeCustomer(e){
+    setCustomerSelected(e.target.value);
+  }
+  console.log(customer);
     return(
         <div>
             <Header />
@@ -72,6 +74,10 @@ export default function New(e){
                  <S.Form onSubmit={handleRegister}>
                   <S.Values>
                       <S.Label>Customer</S.Label>
+
+                      {loadCustomer ? (
+                        <input type="text" disabled={true} value="Carregando clientes..." />
+                      ) : (
                       <S.Select 
                         type='select'
                         value={customerSelected}
@@ -86,7 +92,7 @@ export default function New(e){
                           )
                         })}
                       </S.Select>
-
+                      )}
                       <S.Label>About</S.Label>
                       <S.Select value={about} onChange={handleChangeSelect}>
                         <S.Option value="Suport">Suport</S.Option>
