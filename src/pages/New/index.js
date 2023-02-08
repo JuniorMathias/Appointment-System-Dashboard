@@ -29,7 +29,7 @@ export default function New(e){
         snapshot.forEach((doc) => {
           list.push({
             id: doc.id,
-            companyName: doc.companyName
+            companyName: doc.data().companyName
           })
         })
 
@@ -62,7 +62,6 @@ export default function New(e){
   function handleChangeCustomer(e){
     setCustomerSelected(e.target.value);
   }
-  console.log(customer);
     return(
         <div>
             <Header />
@@ -76,7 +75,7 @@ export default function New(e){
                       <S.Label>Customer</S.Label>
 
                       {loadCustomer ? (
-                        <input type="text" disabled={true} value="Carregando clientes..." />
+                        <input type="text" disabled={true} value="loading customers..." />
                       ) : (
                       <S.Select 
                         type='select'
