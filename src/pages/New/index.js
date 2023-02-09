@@ -72,6 +72,7 @@ export default function New(e){
       toast.error("Something went wrong when registering, please try again");
     })
   }
+  //function to select any select
   function handleChangeSelect(e){
     setAbout(e.target.value);
   }
@@ -102,7 +103,6 @@ export default function New(e){
                         onChange={handleChangeCustomer}
                       >
                         {customer.map((item, index) => {
-                          console.log(customer);
                           return (
                             <option key={item.id} value={index} >
                               {item.companyName}

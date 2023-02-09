@@ -8,7 +8,7 @@ function SignUp() {
   const [ name, setName ] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
 
 function handleSubmit(e){
   e.preventDefault();
@@ -47,7 +47,7 @@ function handleSubmit(e){
           <S.Button
             type="submit"
           >
-            Register
+            {loadingAuth ? 'Loading...' : 'Register'}
           </S.Button>
         </S.Form>
         <S.Link to="/">Already have account ? Sign In</S.Link>

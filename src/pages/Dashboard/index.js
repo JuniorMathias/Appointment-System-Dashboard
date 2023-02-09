@@ -46,13 +46,14 @@ export default function Dashboard(){
       let list = [];
       
       snapshot.forEach((doc)=> {
+        console.log(doc.data().about);
         list.push({
           id: doc.id,
           about: doc.data().about,
           client: doc.data().client,
           clientId: doc.data().clientId,
-          created: doc.data().created,
-          createFormated: format(doc.data().created.toDate(), 'dd/MM/yyyy'),
+          create: doc.data().create,
+          createFormated: format(doc.data().create.toDate(), 'dd/MM/yyyy'),
           status: doc.data().status,
           complement: doc.data().complement
         })
@@ -61,13 +62,39 @@ export default function Dashboard(){
       //checking which register was searched and following from the search
       const lastDoc = snapshot.docs[snapshot.docs.length - 1];
 
-      setRegister(register => [...register, ...list]) //getting the registers and putting in the params. spread operator
+      setRegister(register => [...register, ...list]); //getting the registers and putting in the params. spread operator
       setLastDocs(lastDoc);
     }else {
       setIsEmpty(true);
     }
     setLoadingMore(false);
   }
+  async function handleMore(){
+    setLoadingMore(true);
+    await listRef.startAfter(lastDocs).limit(5)
+    .get()
+    .then((snapshot)=>{
+      updateState(snapshot)
+    })
+  }
+
+if(loading){
+  return (
+    <div>
+      <Header/>
+      <S.Content>
+        <Title name='dashboard'>
+          <FiMessageSquare size={25} />
+        </Title>
+        <S.Container>
+          <S.Span>Loading Registers...</S.Span>
+        </S.Container>
+      </S.Content>
+    </div>
+
+  )
+}
+
 
   return(
     <div>
@@ -104,28 +131,34 @@ export default function Dashboard(){
             <S.Th scope="col">#</S.Th>
           </S.Tr>
           <S.Tbody>
-            <S.Tr>
-              <S.Td>Junior</S.Td>
-              <S.Td data-label="Assunto">Suport</S.Td>
-              <S.Td data-label="Status">
-                <span className="badge" style={{backgroundColor: '#5cb85c' }}>Open</span>
-              </S.Td>
-              <S.Td data-label="Cadastrado">DD/MM/YYYY</S.Td>
-              <S.Td data-label="#">
-                <S.Button id="action" 
-                  style={{backgroundColor: '#3583f6', marginRight: '0.3em', borderRadius: '20%'}}
-                >
-                  <FiSearch color="#FFF" size={17} />
-                </S.Button>
-                <S.Button id="action" style={{backgroundColor: '#F6a935', borderRadius: '20%' }}>
-                  <FiEdit2 color="#FFF" size={17} />
-                </S.Button>
-              </S.Td>
-            </S.Tr>
+            {register.map((item, index) =>{
+              return (
+                <S.Tr key={index}>
+                  <S.Td data-label="Customer">{item.client}</S.Td>
+                  <S.Td data-label="Assunto">{item.about}</S.Td>
+                  <S.Td data-label="Status">
+                    <span className="badge" style={{backgroundColor: item.status === 'Open' ? '#5cb85c' : '#999' }}>{item.status}</span>
+                  </S.Td>
+                  <S.Td data-label="Cadastrado">{item.createFormated}</S.Td>
+                  <S.Td data-label="#">
+                    <S.Button id="action" 
+                      style={{backgroundColor: '#3583f6', marginRight: '0.3em', borderRadius: '20%'}}
+                    >
+                      <FiSearch color="#FFF" size={17} />
+                    </S.Button>
+                    <S.Button id="action" style={{backgroundColor: '#F6a935', borderRadius: '20%' }}>
+                      <FiEdit2 color="#FFF" size={17} />
+                    </S.Button>
+                  </S.Td>
+                </S.Tr>
+              )
+            })}
           </S.Tbody>
         </S.Table>
       
       </S.Container>
+      {loadingMore && <h3 style={{textAlign: 'center', marginTop: 15 }}>Buscando dados...</h3>}
+      { !loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button> }
       </>
       }
 
