@@ -94,7 +94,7 @@ export default function New(e){
                       <S.Label>Customer</S.Label>
 
                       {loadCustomer ? (
-                        <input type="text" disabled={true} value="loading customers..." />
+                        <S.Select type="select" disabled={true} value="loading customers..." />
                       ) : (
                       <S.Select 
                         type='select'

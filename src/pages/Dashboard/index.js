@@ -1,13 +1,44 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './styles';
 
 import Header from '../../components/Header';
 import Title from '../../components/Title';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
 
+import firebase from '../../services/firebaseConnection';
+
+const listRef = firebase.firestore().collection('calls').orderBy('created', 'desc');
+
 export default function Dashboard(){
-  const [register, setRegister] = useState([1]);
+  const [register, setRegister] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  useEffect(() =>{
+    loadRegister();
+    return() => {
+
+    }
+  }, []);
+
+  async function loadRegister(){
+    await listRef.limit(5)
+    .get()
+    .then((snapshot) => {
+      updateState(snapshot);
+    })
+    .catch(() => {
+      setLoadingMore(false);
+    })
+    setLoading(false);
+  }
+
+  //loading the registration from firebase
+  async function updateState(snapshot) {
+    const isCollectionEmpty = snapshot.size === 0;
+  }
 
   return(
     <div>
