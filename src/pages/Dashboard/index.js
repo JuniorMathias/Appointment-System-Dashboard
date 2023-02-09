@@ -7,6 +7,7 @@ import Title from '../../components/Title';
 import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
 
 import firebase from '../../services/firebaseConnection';
+import { format } from 'date-fns';
 
 const listRef = firebase.firestore().collection('calls').orderBy('created', 'desc');
 
@@ -15,6 +16,7 @@ export default function Dashboard(){
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [lastDocs, setLastDocs] = useState();
 
   useEffect(() =>{
     loadRegister();
@@ -36,8 +38,35 @@ export default function Dashboard(){
   }
 
   //loading the registration from firebase
+
   async function updateState(snapshot) {
     const isCollectionEmpty = snapshot.size === 0;
+
+    if(!isCollectionEmpty){
+      let list = [];
+      
+      snapshot.forEach((doc)=> {
+        list.push({
+          id: doc.id,
+          about: doc.data().about,
+          client: doc.data().client,
+          clientId: doc.data().clientId,
+          created: doc.data().created,
+          createFormated: format(doc.data().created.toDate(), 'dd/MM/yyyy'),
+          status: doc.data().status,
+          complement: doc.data().complement
+        })
+      })
+
+      //checking which register was searched and following from the search
+      const lastDoc = snapshot.docs[snapshot.docs.length - 1];
+
+      setRegister(register => [...register, ...list]) //getting the registers and putting in the params. spread operator
+      setLastDocs(lastDoc);
+    }else {
+      setIsEmpty(true);
+    }
+    setLoadingMore(false);
   }
 
   return(
