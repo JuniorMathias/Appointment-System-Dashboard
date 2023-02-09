@@ -50,8 +50,27 @@ export default function New(e){
     loadCustomer();
   },[]);
 
-  function handleRegister(e){
+ async function handleRegister(e){
     e.preventDefault();
+
+    await firebase.firestore().collection('calls')
+    .add({
+      create: new Date(),
+      client: customer[customerSelected].companyName,
+      clientId: customer[customerSelected].id,
+      about: about,
+      status: status,
+      complement: complement,
+      userId: user.uid
+    })
+    .then(() => {
+      toast.success("Registered successfully");
+      setComplement('');
+      setCustomerSelected(0);
+    })
+    .catch((error) => {
+      toast.error("Something went wrong when registering, please try again");
+    })
   }
   function handleChangeSelect(e){
     setAbout(e.target.value);
