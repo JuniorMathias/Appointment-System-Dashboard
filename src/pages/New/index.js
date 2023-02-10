@@ -43,6 +43,7 @@ export default function New(e){
         setLoadCustomer(false);
       })
       .catch((error) => {
+        toast.error("somathing went wrong", error);
         setLoadCustomer(false);
         setCustomer([ {id: 1, companyName: ''}]);
       })

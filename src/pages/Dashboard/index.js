@@ -19,13 +19,12 @@ export default function Dashboard(){
   const [lastDocs, setLastDocs] = useState();
 
   useEffect(() =>{
-    loadRegister();
+    loadCustomer();
     return() => {
-
     }
   }, []);
 
-  async function loadRegister(){
+  async function loadCustomer(){
     await listRef.limit(5)
     .get()
     .then((snapshot) => {
@@ -95,7 +94,7 @@ if(loading){
   )
 }
 
-
+console.log(register);
   return(
     <div>
       <Header />
