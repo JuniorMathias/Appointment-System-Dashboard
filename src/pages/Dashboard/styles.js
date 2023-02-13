@@ -107,3 +107,13 @@ export const Td = styled.td`
 `;
 export const Button = styled.button`
 `;
+export const ButtonMore = styled.button`
+  margin: 1.5em 0;
+  padding: .5em 1em;
+  height: 35px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #181c2e;
+  color: #fff !important;
+  font-size: 1.1em !important;
+`;

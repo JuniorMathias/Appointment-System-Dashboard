@@ -9,7 +9,7 @@ import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
 import firebase from '../../services/firebaseConnection';
 import { format } from 'date-fns';
 
-const listRef = firebase.firestore().collection('calls').orderBy('created', 'desc');
+const listRef = firebase.firestore().collection('calls').orderBy('create', 'desc');
 
 export default function Dashboard(){
   const [register, setRegister] = useState([]);
@@ -19,12 +19,12 @@ export default function Dashboard(){
   const [lastDocs, setLastDocs] = useState();
 
   useEffect(() =>{
-    loadCustomer();
+    loadCalls();
     return() => {
     }
   }, []);
 
-  async function loadCustomer(){
+  async function loadCalls(){
     await listRef.limit(5)
     .get()
     .then((snapshot) => {
@@ -45,7 +45,6 @@ export default function Dashboard(){
       let list = [];
       
       snapshot.forEach((doc)=> {
-        console.log(doc.data().about);
         list.push({
           id: doc.id,
           about: doc.data().about,
@@ -155,9 +154,9 @@ console.log(register);
           </S.Tbody>
         </S.Table>
       
+      {loadingMore && <h3 style={{textAlign: 'center', marginTop: 15 }}>Loading Datas...</h3>}
+      { !loadingMore && !isEmpty && <S.ButtonMore className="btn-more" onClick={handleMore}>Buscar mais</S.ButtonMore> }
       </S.Container>
-      {loadingMore && <h3 style={{textAlign: 'center', marginTop: 15 }}>Buscando dados...</h3>}
-      { !loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button> }
       </>
       }
 
