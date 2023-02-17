@@ -9,6 +9,8 @@ import { FiMessageSquare, FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi';
 import firebase from '../../services/firebaseConnection';
 import { format } from 'date-fns';
 
+import Modal from '../../components/Modal';
+
 const listRef = firebase.firestore().collection('calls').orderBy('create', 'desc');
 
 export default function Dashboard(){
@@ -18,23 +20,25 @@ export default function Dashboard(){
   const [isEmpty, setIsEmpty] = useState(false);
   const [lastDocs, setLastDocs] = useState();
 
+  const [showPostModal, setShowPostModal] = useState(false);
+  const [detail, setDetail] = useState();
+
   useEffect(() =>{
+    async function loadCalls(){
+      await listRef.limit(5)
+      .get()
+      .then((snapshot) => {
+        updateState(snapshot);
+      })
+      .catch(() => {
+        setLoadingMore(false);
+      })
+      setLoading(false);
+    }
     loadCalls();
     return() => {
     }
   }, []);
-
-  async function loadCalls(){
-    await listRef.limit(5)
-    .get()
-    .then((snapshot) => {
-      updateState(snapshot);
-    })
-    .catch(() => {
-      setLoadingMore(false);
-    })
-    setLoading(false);
-  }
 
   //loading the registration from firebase
 
@@ -76,6 +80,11 @@ export default function Dashboard(){
     })
   }
 
+  function togglePostModal(item){
+    setShowPostModal(!showPostModal) // changing the boolean value
+    setDetail(item);
+  }
+
 if(loading){
   return (
     <div>
@@ -93,7 +102,6 @@ if(loading){
   )
 }
 
-console.log(register);
   return(
     <div>
       <Header />
@@ -142,7 +150,7 @@ console.log(register);
                     <S.Button id="action" 
                       style={{backgroundColor: '#3583f6', marginRight: '0.3em', borderRadius: '20%'}}
                     >
-                      <FiSearch color="#FFF" size={17} />
+                      <FiSearch color="#FFF" size={17} onClick={() => togglePostModal(item)} />
                     </S.Button>
                     <S.Button id="action" style={{backgroundColor: '#F6a935', borderRadius: '20%' }}>
                       <FiEdit2 color="#FFF" size={17} />
@@ -161,6 +169,12 @@ console.log(register);
       }
 
       </S.Content>
+      {showPostModal && (
+        <Modal 
+         content={detail}
+         close={togglePostModal}
+        />
+      )}
     </div>
   )
 }
