@@ -4,6 +4,7 @@ import { FiX } from 'react-icons/fi';
 
 
 export default function Modal(content, close){
+    console.log(content);
     return(
       <>
       <S.Modal>
@@ -16,29 +17,29 @@ export default function Modal(content, close){
                 <S.H2>Details</S.H2>
                 <S.Row>
                     <S.Span>
-                        About: <a>{content.about}</a>
+                        About: <a>{content.content.about}</a>
                     </S.Span>
                 </S.Row>
                 <S.Row>
                     <S.Span>
-                        Client: <a>{content.client}</a>
+                        Client: <a>{content.content.client}</a>
                     </S.Span>
                     <S.Span>
-                        Registered to: <a>{content.createFormated}</a>
+                        Registered to: <a>{content.content.createFormated}</a>
                     </S.Span>
                 </S.Row>
                 <S.Row>
                     <S.Span>
-                        Status: <S.Sta style={{color: '#fff', backgroundColor: content.status === 'Open' ? '#5cb85c' : '#999' }}>{content.status}</S.Sta>
+                        Status: <S.Sta style={{color: '#fff', backgroundColor: content.status === 'Open' ? '#5cb85c' : '#999' }}>{content.content.status}</S.Sta>
                     </S.Span>
                 </S.Row>
                 {/* //showing only if the complement is different of null */}
-                {content.complement !== '' && (
+                {content.content.complement !== '' && (
                     <>
-                    <h3>Complement</h3>
-                    <p>
-                      {content.complement}
-                    </p>
+                    <S.H2>Complement</S.H2>
+                    <S.Paragraph>
+                      {content.content.complement}
+                    </S.Paragraph>
                     </>
                 ) }
 

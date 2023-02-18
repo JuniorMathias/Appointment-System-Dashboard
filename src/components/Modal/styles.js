@@ -46,13 +46,22 @@ export const Span = styled.span`
     font-weight: bold;
     font-size: 1.2em;
     color: #121212;
+    margin-right: 7px;
 `;
 export const Sta = styled.a`
     font-weight: 400;
     margin-right: 1em;
     padding: 2px 8px;
+    border-radius: 3px;
 `;
 export const Row = styled.div`
+    margin-bottom: 1em;
+`;
+export const Paragraph = styled.p`
+    //getting the format of the paragraph
+    white-space: pre-wrap;
+    padding-top: 0.5em;
+
 `;
 export const Content = styled.div`
 `;
