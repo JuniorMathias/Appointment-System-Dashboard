@@ -83,7 +83,6 @@ export default function Dashboard(){
   function togglePostModal(item){
     setShowPostModal(!showPostModal) // changing the boolean value
     setDetail(item);
-    console.log(item);
   }
 
 if(loading){
@@ -168,7 +167,6 @@ if(loading){
       </S.Container>
       </>
       }
-
       </S.Content>
       {showPostModal && (
         <Modal 

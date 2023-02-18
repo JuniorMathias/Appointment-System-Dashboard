@@ -4,9 +4,8 @@ import { FiX } from 'react-icons/fi';
 
 
 export default function Modal(content, close){
-
     return(
-      <> 
+      <>
       <S.Modal>
           <S.Container>
               <S.Button onClick={close}>
@@ -14,7 +13,7 @@ export default function Modal(content, close){
                   Back
               </S.Button>
               <S.Content>
-                <h2>Details</h2>
+                <S.H2>Details</S.H2>
                 <S.Row>
                     <S.Span>
                         About: <a>{content.about}</a>
@@ -30,7 +29,7 @@ export default function Modal(content, close){
                 </S.Row>
                 <S.Row>
                     <S.Span>
-                        Status: <a style={{color: '#fff', backgroundColor: content.status === 'Open' ? '#5cb85c' : '#999' }}>{content.status}</a>
+                        Status: <S.Sta style={{color: '#fff', backgroundColor: content.status === 'Open' ? '#5cb85c' : '#999' }}>{content.status}</S.Sta>
                     </S.Span>
                 </S.Row>
                 {/* //showing only if the complement is different of null */}
