@@ -20,8 +20,30 @@ export default function Modal(content, close){
                         About: <a>{content.about}</a>
                     </S.Span>
                 </S.Row>
-              </S.Content>
+                <S.Row>
+                    <S.Span>
+                        Client: <a>{content.client}</a>
+                    </S.Span>
+                    <S.Span>
+                        Registered to: <a>{content.createFormated}</a>
+                    </S.Span>
+                </S.Row>
+                <S.Row>
+                    <S.Span>
+                        Status: <a style={{color: '#fff', backgroundColor: content.status === 'Open' ? '#5cb85c' : '#999' }}>{content.status}</a>
+                    </S.Span>
+                </S.Row>
+                {/* //showing only if the complement is different of null */}
+                {content.complement !== '' && (
+                    <>
+                    <h3>Complement</h3>
+                    <p>
+                      {content.complement}
+                    </p>
+                    </>
+                ) }
 
+              </S.Content>
           </S.Container>
       </S.Modal>
         
