@@ -9,7 +9,12 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/auth';
 import firebase from '../../services/firebaseConnection';
 
+import { useHistory, useParams} from 'react-router-dom';
+
 export default function New(e){
+  const { id } = useParams();
+  const history = useHistory();
+
   const [about, setAbout] = useState("Suport");
   const [status, setStatus] = useState('Open');
   const [complement, setComplement] = useState('');
@@ -17,6 +22,7 @@ export default function New(e){
   const [customer, setCustomer] = useState([]);
   const [loadCustomer, setLoadCustomer] = useState(true);
   const [customerSelected, setCustomerSelected] = useState(0);
+  const [idCustomer, setIdCustomer] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -41,6 +47,10 @@ export default function New(e){
         }
         setCustomer(list);
         setLoadCustomer(false);
+
+        if(id){
+          loadId(list);
+        }
       })
       .catch((error) => {
         toast.error("somathing went wrong", error);
@@ -49,10 +59,48 @@ export default function New(e){
       })
     }
     loadCustomer();
-  },[]);
+  },[id]);
+
+  async function loadId(list){
+    await firebase.firestore().collection('calls').doc(id)
+    .get()
+    .then((snapshot)=> {
+      setAbout(snapshot.data().about);
+      setStatus(snapshot.data().status);
+      setComplement(snapshot.data().complement)
+
+      let index = list.findIndex(item => item.id === snapshot.data().clientId)
+      setCustomerSelected(index);
+      setIdCustomer(true);
+    })
+    .catch((error) => {
+      toast.error("Something went wrong, please try again");
+      setIdCustomer(false);
+    })
+
+  }
 
  async function handleRegister(e){
     e.preventDefault();
+    if(idCustomer){
+      await firebase.firestore().collection('calls')
+        .doc(id)
+        .update({
+          client: customer[customerSelected].companyName,
+          clientId: customer[customerSelected].id,
+          about: about,
+          status: status,
+          complement: complement,
+          userId: user.uid
+        })
+        .then(() => {
+          toast.success("Updated customer successfully");
+          setCustomerSelected(0);
+          setComplement('');
+          history.push('/dashboard');
+        })
+
+    }
 
     await firebase.firestore().collection('calls')
     .add({

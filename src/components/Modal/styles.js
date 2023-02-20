@@ -22,15 +22,15 @@ export const Container = styled.div`
     box-shadow: 0 0 20px rgba(0,0,0,0.8);
 `;
 export const Button = styled.button`
-    background-color: #f65835;
-    border: 0;
-    color: #fff;
+    background-color: #F65835;
+    border:0;
+    color: #FFF;
     position: absolute;
     top: 15px;
     left: 15px;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
     padding: 4px 15px;
     border-radius: 5px;
     svg{

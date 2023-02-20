@@ -117,3 +117,6 @@ export const ButtonMore = styled.button`
   color: #fff !important;
   font-size: 1.1em !important;
 `;
+export const ButtonEdit = styled(Router)`
+
+`;

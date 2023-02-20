@@ -10,7 +10,6 @@ import firebase from '../../services/firebaseConnection';
 import { format } from 'date-fns';
 
 import Modal from '../../components/Modal';
-
 const listRef = firebase.firestore().collection('calls').orderBy('create', 'desc');
 
 export default function Dashboard(){
@@ -152,9 +151,12 @@ if(loading){
                     >
                       <FiSearch color="#FFF" size={17} onClick={() => togglePostModal(item)} />
                     </S.Button>
-                    <S.Button id="action" style={{backgroundColor: '#F6a935', borderRadius: '20%' }}>
+                    <S.ButtonEdit id="action" 
+                      style={{backgroundColor: '#F6a935', paddingTop: '8px', borderRadius: '20%'}}
+                      to={`/new/${item.id}`}
+                    >
                       <FiEdit2 color="#FFF" size={17} />
-                    </S.Button>
+                    </S.ButtonEdit>
                   </S.Td>
                 </S.Tr>
               )
