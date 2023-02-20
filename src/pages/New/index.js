@@ -99,7 +99,10 @@ export default function New(e){
           setComplement('');
           history.push('/dashboard');
         })
-
+        .catch((error) => {
+          toast.error("Something went wrong when registering, please try again");
+        })
+        return;
     }
 
     await firebase.firestore().collection('calls')

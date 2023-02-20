@@ -102,8 +102,7 @@ export const Td = styled.td`
   background-color: #f8f8f8;
   color: #474a51 !important;
   border: 1px solid #ddd;
-  padding: .35em;
-  margin-left:
+  padding: 1em;
 `;
 export const Button = styled.button`
 `;
